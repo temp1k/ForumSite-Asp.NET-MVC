@@ -1,0 +1,11 @@
+﻿@model IEnumerable<User>
+@{
+    IEnumerable<User> users = Model;
+}
+<div>
+    <p>Пользователи:</p><br/>
+    @foreach(var user in users)
+    {
+        <p>@user.Login (@user.Fio)</p>
+    }
+</div>

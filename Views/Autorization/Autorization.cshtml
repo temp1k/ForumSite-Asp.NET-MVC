@@ -1,0 +1,30 @@
+﻿@model LoginModel;
+@{
+    Layout = null;
+}
+@{
+<form method="post" asp-action="Autorization">
+    <fieldset>
+        <div>
+            <label>Введите логин или почту: </label>
+            <input asp-for="@Model.Login" class="input" placeholder="Enter login or email" name="Login" value="" />
+            <span asp-validation-for="Login"></span>
+
+            <label>Введите пароль: </label>
+            <input asp-for="@Model.Password" minlegnth="8" class="input" type="password" placeholder="Enter password" name="Password" value="" />
+            <span asp-validation-for="Password"></span>
+
+        </div>
+        <div class="wrapper">
+            <button type="submit" class="button">Войти</button>
+        </div>
+        <div>
+            <a href="@Url.Action("Registration","Autorization")">Зарегестрироваться</a>
+        </div>
+    </fieldset>
+</form>
+}
+
+@section Footer{
+    <p>Copyright© Forum Site "About Everything", @DateTime.Now.Year. All rights reserved</p>
+}

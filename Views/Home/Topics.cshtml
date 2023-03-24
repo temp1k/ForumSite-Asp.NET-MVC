@@ -1,0 +1,14 @@
+﻿@model IEnumerable<TopicDiscussion>
+@{
+    IEnumerable<TopicDiscussion> topics = Model;
+}
+<div>
+    @foreach (TopicDiscussion topic in topics)
+    {
+        <div>
+            <p>@Html.ActionLink(topic.Name, "Topic", new {id = topic.IdTopic}, null) by @topic.User.Login</p>
+            <p>@topic.Description</p>
+        </div>
+    }
+</div>
+

@@ -1,0 +1,24 @@
+﻿@model MainModel
+@{
+    ViewData["Title"] = "Forum \"About Everything\"";
+    Layout = "_Layout";
+
+    User user = Model.user;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h2>Hello @user.Login</h2>
+
+    <a asp-action="CreateTopic">Создать тему</a>
+    <a asp-action="Friends">Добавить друзей</a>
+
+    @{
+        await Html.RenderPartialAsync("Topics", Model.topics);
+    }
+</body>
+</html>

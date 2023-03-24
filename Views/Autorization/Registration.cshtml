@@ -1,0 +1,35 @@
+﻿@model RegistrationModel;
+@{
+    Layout = null;
+}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Forum "About everything"</title>
+</head>
+<body>
+    <form asp-action="registration" asp-controller="autorization">
+        <div class="container">
+            <div class="login">
+                <label asp-for="Login">Введите логин:  </label>
+                <input asp-for="Login" class="input" placeholder="Enter login" name="Login" id="login" value="" />
+                <span asp-validation-for="Login"></span><br />
+                <label asp-for="Password">Введите пароль: </label>
+                <input class="input" type="password" asp-for="Password" placeholder="Enter password" id="password" name="Password" value="" />
+                <span asp-validation-for="Password"></span><br />
+                <label asp-for="RepeatPassword">Повторите пароль: </label>
+                <input class="input" type="password" asp-for="RepeatPassword" placeholder="Repeat password" name="RepeatPassword" value="" />
+                <span asp-validation-for="RepeatPassword"></span><br /><br />
+                <label asp-for="Fio">Введите ваше имя:</label>
+                <input name="Fio" asp-for="Fio" />
+                <span asp-validation-for="Fio"></span><br />
+                <input type="submit" class="btn" value="Register" />
+            </div>
+            <div class="signin">
+                <p>Already have an account? <a href="@Url.Action("Autorization", "Autorization")">Sing in</a>.</p>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

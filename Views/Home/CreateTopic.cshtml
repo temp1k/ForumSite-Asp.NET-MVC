@@ -1,0 +1,22 @@
+﻿@model User;
+@{
+    <head></head>
+    <body>
+        @using(Html.BeginForm("CreateTopic", "Home", FormMethod.Post))
+        {
+            <div>
+                <p>
+                    @Html.Label("Name", "Название темы:")
+                    @Html.TextBox("Name", "")
+                </p>
+                <p>
+                    @Html.Label("Description", "Описание")
+                    @Html.TextBox("Description", "")
+                @Html.Hidden("DateCreation", DateTime.Now)
+                @Html.Hidden("UserId", Model.IdUser)
+
+                <input type="submit" value="СОздать"/>
+            </div>
+        }
+    </body>
+}
