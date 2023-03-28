@@ -2,7 +2,7 @@
 
 namespace ForumSite.ModelViews
 {
-    public class ProfileModel
+    public class YourProfileModel
     {
         public User user { get; set; }
 
@@ -12,6 +12,5 @@ namespace ForumSite.ModelViews
 
         public int countTopics { get; set; }
 
-        public bool isAdmin { get; set; } = false;
     }
 }

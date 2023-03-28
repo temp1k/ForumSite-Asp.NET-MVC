@@ -1,6 +1,31 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model YourProfileModel
 @{
-    <div>Это ваш профиль</div>
+    User user = Model.user;
+    ICollection<Friend> friends = Model.friends;
 }
+<main>
+    <div>
+        <div>
+            <p>@user.Login</p>
+            <p>@user.Fio</p>
+        </div>
+        <div>
+            <p>Друзья: </p>
+            @foreach (var friend in friends)
+            {
+                <p>@Html.ActionLink(@friend.FriendNavigation.Login, "Profile", new { login = @friend.FriendNavigation.Login}, null)</p>
+            }
+        </div>
+        <div>
+            <p>Количество сообщений: @Model.countMessages</p>
+            <p>Количество созданных тем: @Model.countTopics</p>
+        </div>
+        <div>
+            <p>Все темы @user.Login:</p>
+            @foreach (var topic in user.TopicDiscussions)
+            {
+                <p>@Html.ActionLink(topic.Name, "Topic", new {id = topic.IdTopic}, null) (Всего сообщений: @topic.Messages.Count())</p>
+            }
+        </div>
+    </div>
+</main>

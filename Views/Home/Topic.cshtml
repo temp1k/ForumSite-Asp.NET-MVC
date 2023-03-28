@@ -6,10 +6,6 @@
     <div>
         <p>@topic.Name by @topic.User?.Login</p>
         <p>@topic.Description</p>
-        @if (Model.isAdmin)
-        {
-            <p>Вы админ</p>
-        }
     </div><br/>
     
     @if(topic.Messages.Count != 0)
@@ -18,7 +14,7 @@
         {
             <div>
                 <p>
-                    <a asp-action="Profile" asp-route-id="@message.User.IdUser">@message.User.Login</a> @if (Model.isAdmin)
+                    <a asp-action="Profile" asp-route-login="@message.User.Login">@message.User.Login</a> @if (Model.isAdmin)
                     {
                         @Html.ActionLink("Удалить", "DeleteMessage", new { idMessage = message.IdMessage, idTopic = topic.IdTopic }, null);
                     }

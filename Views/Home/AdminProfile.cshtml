@@ -1,0 +1,29 @@
+﻿@model ProfileModel
+@{
+    User user = Model.user;
+    ICollection<Friend> friends = Model.friends;
+}
+<div>
+    <p>@user.Login</p>
+    <p>@user.Fio</p>
+    @Html.ActionLink("Заблокировать", "BlockUser", new { loginBlock = user.Login }, null)
+</div>
+<div>
+    <p>Друзья: </p>
+    @foreach (var friend in friends)
+    {
+        <p>@friend.FriendNavigation.Login</p>
+    }
+</div>
+<div>
+    <p>Количество сообщений: @Model.countMessages</p>
+    <p>Количество созданных тем: @Model.countTopics</p>
+</div>
+<div>
+    <p>Все темы @user.Login:</p>
+    @foreach (var topic in user.TopicDiscussions)
+    {
+        <p>@Html.ActionLink(topic.Name, "Topic", new {id = topic.IdTopic}, null)</p>
+    }
+</div>
+

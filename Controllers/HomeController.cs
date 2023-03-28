@@ -107,14 +107,14 @@ namespace ForumSite.Controllers
             return NotFound();
         }
 
-        public async Task<IActionResult> Profile(int id = 0)
+        public async Task<IActionResult> Profile(string login)
         {
-            if (id != 0)
+            if (login != null)
             {
                 User? anotherUser = await db.Users
                     .Include(u => u.TopicDiscussions)
                     .Include(u => u.Messages)
-                    .SingleOrDefaultAsync(u => u.IdUser == id);
+                    .SingleOrDefaultAsync(u => u.Login == login);
 
                 if (anotherUser != null)
                 {
@@ -129,7 +129,8 @@ namespace ForumSite.Controllers
                         friends = await db.Friends.Include(f => f.FriendNavigation)
                             .Where(f => f.UserId == anotherUser.IdUser).ToListAsync(),
                         countMessages = db.Messages.Count(m => m.UserId == anotherUser.IdUser),
-                        countTopics = db.TopicDiscussions.Count(t => t.UserId == anotherUser.IdUser)
+                        countTopics = db.TopicDiscussions.Count(t => t.UserId == anotherUser.IdUser),
+                        isAdmin = isAdmin
                     };
                     return View(profileModel);
                 }
@@ -142,12 +143,31 @@ namespace ForumSite.Controllers
         {
             User? user = await db.Users.SingleOrDefaultAsync(u => u.Login == yourLogin);
 
+            YourProfileModel model = null;
+
             if (user != null)
             {
-                
+                model = new YourProfileModel
+                {
+                    user = await db.Users
+                        .Include(u => u.TopicDiscussions)
+                            .ThenInclude(t => t.Messages)
+                        .SingleOrDefaultAsync(u => u.Login == yourLogin),
+                    friends = await db.Friends.Include(f => f.FriendNavigation)
+                            .Where(f => f.UserId == user.IdUser).ToListAsync(),
+                    countMessages = db.Messages.Count(m => m.UserId == user.IdUser),
+                    countTopics = db.TopicDiscussions.Count(t => t.UserId == user.IdUser)
+                };
+            }
+            else
+            {
+                model = new YourProfileModel
+                {
+                    user = new User { Login = "Такого пользователя не существует" }
+                };
             }
 
-            return View();
+            return View(model);
         }
 
         private async void DeleteUser(int id)
