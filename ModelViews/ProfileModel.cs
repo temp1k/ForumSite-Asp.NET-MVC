@@ -6,12 +6,16 @@ namespace ForumSite.ModelViews
     {
         public User user { get; set; }
 
-        public ICollection<Friend> friends { get; set; }
+        public ICollection<Friend> friends { get; set; } = null!;
 
         public int countMessages { get; set; }
 
         public int countTopics { get; set; }
 
         public bool isAdmin { get; set; } = false;
+
+        public bool isFriend { get; set; } = false;
+
+        public User currentUser { get; set; } = null!;
     }
 }

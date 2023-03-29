@@ -6,6 +6,18 @@
 <div>
     <p>@user.Login</p>
     <p>@user.Fio</p>
+
+    @if (Model.isFriend)
+    {
+        <span>В друзьях</span>
+    }
+    else
+        @using (Html.BeginForm("AddFriend", "Home", FormMethod.Post))
+        {
+            @Html.Hidden("id", user.IdUser)
+            <input type="submit" value="Добавить в друзья"/>
+        }
+
     @using(Html.BeginForm("BlockUser", "Home", FormMethod.Post))
     {
         @Html.Hidden("loginBlock", user.Login)

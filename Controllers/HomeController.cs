@@ -117,19 +117,24 @@ namespace ForumSite.Controllers
         }
 
         [HttpPost]
-        public async void AddFriend(int id)
+        public async Task<IActionResult> AddFriend(int id)
         {
             if (ModelState.IsValid)
             {
                 Friend newFriend = new Friend
                 {
                     UserId = user.IdUser,
-                    FriendId = id
+                    FriendId = id,
+                    RelationId = 2
                 };
 
                 db.Friends.Add(newFriend);
                 await db.SaveChangesAsync();
             }
+
+            User anotherUser = await db.Users.FirstAsync(u => u.IdUser == id);
+
+            return RedirectToAction("Profile", new { login = anotherUser.Login });
         }
 
         public async Task<IActionResult> Profile(string login)
@@ -148,6 +153,14 @@ namespace ForumSite.Controllers
                         return RedirectToAction("YourProfile", new { yourLogin = anotherUser.Login});
                     }
 
+                    User currentUser = await db.Users
+                        .Include(u => u.FriendUsers)
+                        .Include(u => u.FriendFriendNavigations)
+                        .FirstOrDefaultAsync(u => u.IdUser == user.IdUser);
+
+                    bool isFriend = await db.Friends.AnyAsync(f => f.UserId == anotherUser.IdUser && f.FriendId == currentUser.IdUser
+                            || f.UserId == currentUser.IdUser && f.FriendId == anotherUser.IdUser);
+
                     ProfileModel profileModel = new ProfileModel
                     {
                         user = anotherUser,
@@ -155,7 +168,9 @@ namespace ForumSite.Controllers
                             .Where(f => f.UserId == anotherUser.IdUser).ToListAsync(),
                         countMessages = db.Messages.Count(m => m.UserId == anotherUser.IdUser),
                         countTopics = db.TopicDiscussions.Count(t => t.UserId == anotherUser.IdUser),
-                        isAdmin = isAdmin
+                        isAdmin = isAdmin,
+                        isFriend = isFriend,
+                        currentUser = currentUser
                     };
                     return View(profileModel);
                 }
