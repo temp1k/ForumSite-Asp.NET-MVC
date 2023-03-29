@@ -99,12 +99,37 @@ namespace ForumSite.Controllers
 
         public async Task<IActionResult> Friends()
         {
-            IEnumerable<User> users = await db.Users.Where(u => u.IdUser != user.IdUser).ToListAsync();
+            ICollection<User> users = await db.Users
+                .Include(u => u.FriendUsers)
+                .Include(u => u.FriendFriendNavigations)
+                .Where(u => u.IdUser != user.IdUser).ToListAsync();
             if (users != null)
             {
-                return View(users);
+                FriendsModel model = new FriendsModel
+                {
+                    users = users,
+                    currentUser = user
+                };
+
+                return View(model);
             }
             return NotFound();
+        }
+
+        [HttpPost]
+        public async void AddFriend(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                Friend newFriend = new Friend
+                {
+                    UserId = user.IdUser,
+                    FriendId = id
+                };
+
+                db.Friends.Add(newFriend);
+                await db.SaveChangesAsync();
+            }
         }
 
         public async Task<IActionResult> Profile(string login)
@@ -137,6 +162,28 @@ namespace ForumSite.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> BlockUser(string loginBlock)
+        {
+            User? user = await db.Users.FirstOrDefaultAsync(u => u.Login == loginBlock);
+
+            if(user != null)
+            {
+                if (!user.Block) user.Block = true;
+                else user.Block = false;
+
+                db.Users.Update(user);
+                await db.SaveChangesAsync();
+
+                return RedirectToAction("Profile", new { login = user.Login });
+            }
+            else
+            {
+                return BadRequest();
+            }
+           
         }
 
         public async Task<IActionResult> YourProfile(string yourLogin)

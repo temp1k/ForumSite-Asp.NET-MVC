@@ -1,11 +1,19 @@
-﻿@model IEnumerable<User>
+﻿@model FriendsModel
 @{
-    IEnumerable<User> users = Model;
+    IEnumerable<User> users = Model.users;
+    User currentUser = Model.currentUser;
 }
 <div>
     <p>Пользователи:</p><br/>
     @foreach(var user in users)
     {
-        <p>@user.Login (@user.Fio)</p>
+        bool isFriend = user.FriendUsers.Any(f => f.FriendId == currentUser.IdUser) || user.FriendFriendNavigations.Any(f => f.UserId == currentUser.IdUser);
+
+        <p>@user.Login (@user.Fio)
+            @if (isFriend)
+            {
+                <span>В друзьях</span>
+            }
+        </p>
     }
 </div>

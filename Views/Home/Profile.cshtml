@@ -1,10 +1,14 @@
 ﻿@model ProfileModel;
 @{
-
+    User user = Model.user;
 }
 @{
     <main>
-        @if (Model.isAdmin)
+        @if (user.Block)
+        {
+            await Html.RenderPartialAsync("BlockProfile", Model);
+        }
+        else if (Model.isAdmin)
         {
             await Html.RenderPartialAsync("AdminProfile", Model);
         }

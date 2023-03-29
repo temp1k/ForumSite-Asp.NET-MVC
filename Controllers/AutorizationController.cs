@@ -30,38 +30,46 @@ namespace ForumSite.Controllers
                 User user = await db.Users.FirstOrDefaultAsync(u => u.Login == loginModel.Login && u.Password == loginModel.Password);
                 if (user != null)
                 {
-                    Admin isAdmin = await db.Admins.FirstOrDefaultAsync(a => a.UserId == user.IdUser);
-
-                    List<Claim> listClaim = new List<Claim>();
-                    listClaim.Add(new Claim(ClaimTypes.Name, user.Login));
-                    if (isAdmin != null)
+                    if (!user.Block)
                     {
-                        listClaim.Add(new Claim(ClaimTypes.Role, "Administrator"));
+                        Admin isAdmin = await db.Admins.FirstOrDefaultAsync(a => a.UserId == user.IdUser);
+
+                        List<Claim> listClaim = new List<Claim>();
+                        listClaim.Add(new Claim(ClaimTypes.Name, user.Login));
+                        if (isAdmin != null)
+                        {
+                            listClaim.Add(new Claim(ClaimTypes.Role, "Administrator"));
+                        }
+                        else
+                        {
+                            listClaim.Add(new Claim(ClaimTypes.Role, "User"));
+                        }
+
+                        var claims = listClaim;
+                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(claimsIdentity));
+
+
+                        return RedirectToAction("Index", "Home", new { id = user.IdUser });
                     }
                     else
                     {
-                        listClaim.Add(new Claim(ClaimTypes.Role, "User"));
+                        ModelState.AddModelError(" ", "Ваша учетная запись заблокирована.");
+                        return View();
                     }
-
-                    var claims = listClaim;
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                        new ClaimsPrincipal(claimsIdentity));
-
-
-                    return RedirectToAction("Index", "Home", new {id = user.IdUser});
                 }
                 else
                 {
                     ModelState.AddModelError(" ", "Неккоректно введед логин или пароль.");
-
                     return View();
                 }
-                
+
             }
             ModelState.AddModelError(" ", "Все поля должны быть заполнены.");
             return RedirectToAction("Autorization");
+
         }
 
         public IActionResult Registration()
