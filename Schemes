@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-03-30T19:39:22.143Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" etag="yfbBT9Q84npqhm-LCOL4" version="21.1.2" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2023-03-30T19:41:48.526Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" etag="utTkZjt5ZcGNvnjXVVBm" version="21.1.2" type="github" pages="3">
   <diagram name="Architecture scheme" id="d5xdqftfXx7eAnXe7fZM">
     <mxGraphModel dx="1257" dy="646" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -282,7 +282,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="7TrXMo9pE9mh8TQRvRbJ" name="Page-3">
-    <mxGraphModel dx="733" dy="377" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1035" dy="532" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -559,6 +559,9 @@
         </mxCell>
         <mxCell id="mnUqu_-xrlKQstS4Tm_3-43" value="Friend.cs" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1570" y="500" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="mnUqu_-xrlKQstS4Tm_3-81" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="mnUqu_-xrlKQstS4Tm_3-80" target="mnUqu_-xrlKQstS4Tm_3-23">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="mnUqu_-xrlKQstS4Tm_3-80" value="Admins.cs" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="560" y="280" width="80" height="40" as="geometry" />
