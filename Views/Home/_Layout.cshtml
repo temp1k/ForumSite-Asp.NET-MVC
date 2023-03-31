@@ -3,12 +3,15 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/css/layout.css" />
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <h2>@ViewBag.Title</h2>
-    <div><a href="/Home/ReturnIndex">Home</a> | <a href="/Home/About">About</a></div>
-    <div>@Html.ActionLink("Выйти", "exit", null, null)</div>
+    <div class="head">
+        <h2>@ViewBag.Title</h2>
+        <a class="c" href="/Home/ReturnIndex">Home</a> | <a class="c" href="/Home/About">About</a>
+        @Html.ActionLink("Выйти", "exit", null, null, new { @class = "c exit"})
+    </div>
     <div>
         @RenderBody()
     </div>

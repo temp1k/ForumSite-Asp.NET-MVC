@@ -22,6 +22,7 @@ namespace ForumSite.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Autorization(LoginModel loginModel)
         {
