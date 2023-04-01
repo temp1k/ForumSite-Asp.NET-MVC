@@ -3,6 +3,14 @@
     IEnumerable<TopicDiscussion> topics = Model;
 }
 <div>
+    <div>
+        @using (Html.BeginForm("FindTopic", "Home", FormMethod.Post))
+        {
+            @Html.TextBox("nameTopic", null, null, new { placeholder = "Введите название темы"})
+
+            <input type="submit" value="Найти"/>
+        }
+    </div>
     @foreach (TopicDiscussion topic in topics)
     {
         <div>

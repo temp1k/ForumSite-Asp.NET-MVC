@@ -40,6 +40,27 @@ namespace ForumSite.Controllers
             return View(mainModel);
         }
 
+        public async Task<IActionResult> FindTopic(string nameTopic)
+        {
+            List<TopicDiscussion> topics = await db.TopicDiscussions
+                .Include(t => t.User)
+                .Where(t => EF.Functions.Like(t.Name!, $"%{nameTopic}%"))
+                .ToListAsync();
+
+            if (topics != null)
+            {
+                MainModel mainModel = new MainModel(user, topics);
+
+                return View("Index", mainModel);
+            }
+            else
+            {
+                return RedirectToAction("Index", new { id = user.IdUser });
+            }
+
+            
+        }
+
         public async Task<IActionResult> Exit()
         {
             // Clear the existing external cookie
@@ -114,6 +135,30 @@ namespace ForumSite.Controllers
                 return View(model);
             }
             return NotFound();
+        }
+
+        public async Task<IActionResult> FindUser(string? loginUser)
+        {
+            List<User> users = await db.Users
+                .Include(u => u.FriendUsers)
+                .Include(u => u.FriendFriendNavigations)
+                .Where(u => EF.Functions.Like(u.Login!, $"%{loginUser}%") && u.IdUser != user.IdUser)
+                .ToListAsync();
+
+            if (users != null)
+            {
+                FriendsModel model = new FriendsModel
+                {
+                    users = users,
+                    currentUser = user
+                };
+
+                return View("Friends", model);
+            }
+            else
+            {
+                return RedirectToAction("Friends");
+            }
         }
 
         [HttpPost]

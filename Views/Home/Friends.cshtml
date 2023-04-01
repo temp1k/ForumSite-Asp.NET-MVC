@@ -4,7 +4,14 @@
     User currentUser = Model.currentUser;
 }
 <div>
-    <p>Пользователи:</p><br/>
+    @using (Html.BeginForm("FindUser", "Home", FormMethod.Post))
+    {
+        @Html.TextBox("loginUser", null, null, new { placeholder = "Введите логин"})
+
+        <input type="submit" value="Найти" />
+    }
+
+    <p>Пользователи:</p>
     @foreach(var user in users)
     {
         bool isFriend = user.FriendUsers.Any(f => f.FriendId == currentUser.IdUser) || user.FriendFriendNavigations.Any(f => f.UserId == currentUser.IdUser);
