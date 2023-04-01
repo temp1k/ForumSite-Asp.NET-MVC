@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FQS213w3SxBol2Kv9PQIx7FO5tZsirKrmTURD9AdPrQ=",
+  "Hash": "h1bWV8GJwGEvWXM8v/QjdLcHWjBkdUp1AW8nnGmj710=",
   "Source": "ForumSite",
   "BasePath": "_content/ForumSite",
   "Mode": "Default",
@@ -117,6 +117,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Files\\Hello.txt"
+    },
+    {
+      "Identity": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\Files\\img\\down_arrow.png",
+      "SourceId": "ForumSite",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\",
+      "BasePath": "_content/ForumSite",
+      "RelativePath": "Files/img/down_arrow.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Files\\img\\down_arrow.png"
+    },
+    {
+      "Identity": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\Files\\img\\up_arrow.png",
+      "SourceId": "ForumSite",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\",
+      "BasePath": "_content/ForumSite",
+      "RelativePath": "Files/img/up_arrow.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Files\\img\\up_arrow.png"
     },
     {
       "Identity": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\js\\site.js",

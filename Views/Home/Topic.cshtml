@@ -14,7 +14,12 @@
         {
             <div>
                 <p>
-                    <a asp-action="Profile" asp-route-login="@message.User.Login">@message.User.Login</a> @if (Model.isAdmin)
+                    <a asp-action="Profile" asp-route-login="@message.User.Login">@message.User.Login</a>
+                    <a asp-action="ChangeMessage" asp-route-id="@message.IdMessage" asp-route-value=-1><img src="~/Files/img/down_arrow.png" /></a>
+                    @message.Rating
+                    <a asp-action="ChangeMessage" asp-route-id="@message.IdMessage" asp-route-value=1><img src="~/Files/img/up_arrow.png" /></a>
+                    
+                    @if (Model.isAdmin)
                     {
                         @Html.ActionLink("Удалить", "DeleteMessage", new { idMessage = message.IdMessage, idTopic = topic.IdTopic }, null);
                     }

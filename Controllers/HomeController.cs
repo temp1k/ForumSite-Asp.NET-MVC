@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Net;
+using System.Transactions;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ForumSite.Controllers
 {
@@ -277,15 +279,6 @@ namespace ForumSite.Controllers
             return View(model);
         }
 
-        private async void DeleteUser(int id)
-        {
-            //if (ModelState.IsValid)
-            //{
-            //    User user = await db.Users.FirstOrDefaultAsync(u => u.IdUser == id);
-            //    user.
-            //}
-        }
-
         public async Task<IActionResult> DeleteMessage(int idMessage, int idTopic)
         {
             Message message = await db.Messages.FirstOrDefaultAsync(m => m.IdMessage == idMessage);
@@ -293,6 +286,23 @@ namespace ForumSite.Controllers
             await db.SaveChangesAsync();
 
             return RedirectToAction("Topic", new { id = idTopic });
+        }
+
+        public async Task<IActionResult> ChangeMessage(int id, int? value, string? text)
+        {
+            Message message = await db.Messages.FirstOrDefaultAsync(m => m.IdMessage == id);
+
+            if (value != null)
+            {
+                message.Rating += value;
+
+                db.Messages.Update(message);
+
+                await db.SaveChangesAsync();
+            }
+
+
+            return RedirectToAction("Topic", new { id = message.TopicId });
         }
 
         public IActionResult GetFile()
