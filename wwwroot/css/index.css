@@ -1,0 +1,31 @@
+﻿main {
+    padding: 0 5%;
+}
+
+.hello{
+    margin-top: 0;
+}
+
+.nav {
+    display: block;
+    position: relative;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+    .nav a {
+        display: inline-block;
+        color: #3431c4d4;
+        margin-right: 2vw;
+        text-decoration: none;
+        text-align: center;
+    }
+
+        .nav a:hover {
+            color: #a00;
+        }
+
+.your_profile {
+    position: absolute;
+    right: 0vw;
+}

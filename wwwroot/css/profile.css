@@ -1,0 +1,99 @@
+﻿main{
+    margin: 0 3vw;
+}
+
+.main_div {
+    border-bottom: solid 3px blue;
+}
+
+.profile {
+}
+
+.login {
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1vh;
+    font-weight: bold;
+}
+
+.fio {
+    padding: 0;
+    margin-top: 0;
+}
+
+.about_friend {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 10px;
+    margin-bottom: 2vh;
+}
+
+.in_friend {
+    color: #0a0882;
+}
+
+.inp_friend {
+    background: #9a99cbd4;
+    color: #0a0882;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+
+.inp_delete_friend:hover {
+    color: #a00;
+    border: solid 1px #a00;
+}
+
+.inp_add_friend:hover {
+    border: solid 1px #0a0882;
+    margin-bottom: 2vh;
+}
+
+.friends {
+}
+
+.friends_label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1vh;
+    margin-top: 1vh
+}
+
+.friend {
+    font-size: 1.1rem;
+    width: auto;
+}
+
+    .friend:hover {
+        color: #0a0882;
+        font-style: italic;
+    }
+
+.about_count {
+    font-size: 1.1rem;
+}
+
+    .about_count span {
+        font-weight: bold;
+    }
+
+.about_topics {
+    
+}
+
+    .about_topics li {
+        margin: 1vh 0 0 0;
+        list-style-type: none;
+    }
+
+    .about_topics ul {
+        margin-top: 0;
+        list-style-type: none;
+    }
+
+.about_topics_label {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    font-weight: bold;
+}

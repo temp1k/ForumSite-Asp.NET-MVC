@@ -13,16 +13,44 @@
       "PackagePath": "staticwebassets\\Files\\img\\down_arrow.png"
     },
     {
+      "Id": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\Files\\img\\letter_icon.png",
+      "PackagePath": "staticwebassets\\Files\\img\\letter_icon.png"
+    },
+    {
       "Id": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\Files\\img\\up_arrow.png",
       "PackagePath": "staticwebassets\\Files\\img\\up_arrow.png"
+    },
+    {
+      "Id": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\css\\autorization.css",
+      "PackagePath": "staticwebassets\\css\\autorization.css"
+    },
+    {
+      "Id": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\css\\create_topic.css",
+      "PackagePath": "staticwebassets\\css\\create_topic.css"
+    },
+    {
+      "Id": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\css\\friends.css",
+      "PackagePath": "staticwebassets\\css\\friends.css"
+    },
+    {
+      "Id": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\css\\index.css",
+      "PackagePath": "staticwebassets\\css\\index.css"
     },
     {
       "Id": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\css\\layout.css",
       "PackagePath": "staticwebassets\\css\\layout.css"
     },
     {
+      "Id": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\css\\profile.css",
+      "PackagePath": "staticwebassets\\css\\profile.css"
+    },
+    {
       "Id": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\css\\topics.css",
+      "PackagePath": "staticwebassets\\css\\topics.css"
     },
     {
       "Id": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\favicon.ico",

@@ -10,15 +10,23 @@
 <head>
     <title></title>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="~/css/index.css"/>
 </head>
 <body>
-    <h2>Hello @user.Login</h2>
+    <main>
+    <h2 class="hello">Hello @user.Login</h2>
 
-    <a asp-action="CreateTopic">Создать тему</a>
-    <a asp-action="Friends">Добавить друзей</a>
+    <div class="nav">
+        <a asp-action="CreateTopic">Создать тему</a>
+        <a asp-action="Friends">Добавить друзей</a>
+        <a asp-action="YourProfile" asp class="your_profile">Ваш профиль</a>
+    </div>
+
+    
 
     @{
         await Html.RenderPartialAsync("Topics", Model.topics);
     }
+    </main>
 </body>
 </html>

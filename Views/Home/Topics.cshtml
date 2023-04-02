@@ -2,21 +2,36 @@
 @{
     IEnumerable<TopicDiscussion> topics = Model;
 }
-<div>
+<head>
+    <link rel="stylesheet" href="~/css/topics.css"/>
+</head>
+
+<div style="margin-top:2vh">
     <div>
         @using (Html.BeginForm("FindTopic", "Home", FormMethod.Post))
         {
-            @Html.TextBox("nameTopic", null, null, new { placeholder = "Введите название темы"})
+            @Html.TextBox("nameTopic", null, null, new { placeholder = "Введите название темы", @class="inp_topic"})
 
-            <input type="submit" value="Найти"/>
+            <input class="btn_search" type="submit" value="Найти"/>
         }
     </div>
-    @foreach (TopicDiscussion topic in topics)
-    {
-        <div>
-            <p>@Html.ActionLink(topic.Name, "Topic", new {id = topic.IdTopic}, null) by @topic.User.Login</p>
-            <p>@topic.Description</p>
-        </div>
-    }
+    <div class="topics">
+        @foreach (TopicDiscussion topic in topics)
+        {
+            <div class="topic">
+                <div class="about_topic">
+                    <img class="icon_topic" src="~/Files/img/letter_icon.png" />
+                    <p class="text_topic">
+                        @Html.ActionLink(topic.Name, "Topic", new {id = topic.IdTopic}, new { @class="name_topic"}) by
+                        <a>@topic.User.Login</a>
+                    </p>
+                </div>
+
+
+                <p class="description">@topic.Description</p>
+            </div>
+        }
+    </div>
+    
 </div>
 

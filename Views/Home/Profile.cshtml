@@ -3,18 +3,21 @@
     User user = Model.user;
 }
 @{
-    <main>
-        @if (user.Block)
-        {
-            await Html.RenderPartialAsync("BlockProfile", Model);
-        }
-        else if (Model.isAdmin)
-        {
-            await Html.RenderPartialAsync("AdminProfile", Model);
-        }
-        else
-        {
-            await Html.RenderPartialAsync("NoAdminProfile", Model);
-        }
-    </main>
+<head>
+    <link rel="stylesheet" href="~/css/profile.css"/>
+</head>
+<main>
+    @if (user.Block)
+    {
+        await Html.RenderPartialAsync("BlockProfile", Model);
+    }
+    else if (Model.isAdmin)
+    {
+        await Html.RenderPartialAsync("AdminProfile", Model);
+    }
+    else
+    {
+        await Html.RenderPartialAsync("NoAdminProfile", Model);
+    }
+</main>
 }

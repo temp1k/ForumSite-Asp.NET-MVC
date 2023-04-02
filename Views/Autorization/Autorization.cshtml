@@ -3,28 +3,44 @@
     Layout = null;
 }
 @{
-<form method="post" asp-action="Autorization">
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="~/css/autorization.css?v=@DateTime.Now.Millisecond" asp-append-version="true" />
+</head>
+<body>
+<main>
+    <form method="post" asp-action="Autorization" class="pole">
     <fieldset>
-        <div>
-            <label>Введите логин или почту: </label>
-            <input asp-for="@Model.Login" class="input" placeholder="Enter login or email" name="Login" value="" />
-            <span asp-validation-for="Login"></span>
+        <p>Авторизация</p>
+        <div class="main">
+            <div class="login">
+                <label>Введите логин или почту: </label>
+                <input asp-for="@Model.Login" class="input" placeholder="Enter login or email" name="Login" value="" />
+                <span asp-validation-for="Login"></span>
+            </div>
 
-            <label>Введите пароль: </label>
-            <input asp-for="@Model.Password" minlegnth="8" class="input" type="password" placeholder="Enter password" name="Password" value="" />
-            <span asp-validation-for="Password"></span>
+            <div class="password">
+                <label>Введите пароль: </label>
+                <input asp-for="@Model.Password" minlegnth="8" class="input" type="password" placeholder="Enter password" name="Password" value="" />
+                <span asp-validation-for="Password"></span>
+            </div>
 
         </div>
         <div class="wrapper">
-            <button type="submit" class="button">Войти</button>
+            <button type="submit" class="but">Войти</button>
         </div>
-        <div>
+            <div class="reg">
             <a href="@Url.Action("Registration","Autorization")">Зарегестрироваться</a>
         </div>
     </fieldset>
-</form>
+    </form>
+</main>
+</body>
+</html>
 }
 
 @section Footer{
     <p>Copyright© Forum Site "About Everything", @DateTime.Now.Year. All rights reserved</p>
 }
+

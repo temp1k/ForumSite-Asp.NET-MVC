@@ -3,36 +3,49 @@
     User user = Model.user;
     ICollection<Friend> friends = Model.friends;
 }
-<div>
-    <p>@user.Login</p>
-    <p>@user.Fio</p>
+<head>
+    <link rel="stylesheet" href="~/css/profile.css?v=@DateTime.Now.Millisecond">
+</head>
 
+<div class="main_div profile">
+    <p class="login">@user.Login</p>
+    <p class="fio">@user.Fio</p>
+    
     @if (Model.isFriend)
     {
-        <span>В друзьях</span>
+        <div class="about_friend">
+            <span>В друзьях</span>
+            @using (Html.BeginForm("DeleteFriend", "Home", FormMethod.Post))
+            {
+                @Html.Hidden("id", user.IdUser)
+                <input class="inp_friend inp_delete_friend" type="submit" value="Удалить из друзей" />
+            }
+        </div>
     }
     else
         @using (Html.BeginForm("AddFriend", "Home", FormMethod.Post))
         {
             @Html.Hidden("id", user.IdUser)
-            <input type="submit" value="Добавить в друзья" />
+            <input class="inp_friend inp_add_friend" type="submit" value="Добавить в друзья" />
         }
 </div>
-<div>
-    <p>Друзья: </p>
+<div class="main_div friends">
+    <p class ="friends_label">Друзья: </p>
     @foreach (var friend in friends)
     {
-        <p>@friend.FriendNavigation.Login</p>
+        <p class="friend"><a asp-action="Profile" asp-route-login="@friend.FriendNavigation.Login">@friend.FriendNavigation.Login</a></p>
     }
 </div>
-<div>
-    <p>Количество сообщений: @Model.countMessages</p>
-    <p>Количество созданных тем: @Model.countTopics</p>
+<div class="about_count">
+    <p>Количество сообщений: <span>@Model.countMessages</span></p>
+    <p>Количество созданных тем: <span>@Model.countTopics</span></p>
 </div>
-<div>
-    <p>Все темы @user.Login:</p>
-    @foreach (var topic in user.TopicDiscussions)
-    {
-        <p>@Html.ActionLink(topic.Name, "Topic", new {id = topic.IdTopic}, null)</p>
-    }
+<div class="about_topics">
+    <p class="about_topics_label">Все темы @user.Login:</p>
+    <ul>
+        @foreach (var topic in user.TopicDiscussions)
+        {
+            <li>@Html.ActionLink(topic.Name, "Topic", new {id = topic.IdTopic}, null)</li>
+        }
+    </ul>
 </div>

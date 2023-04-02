@@ -248,13 +248,15 @@ namespace ForumSite.Controllers
            
         }
 
-        public async Task<IActionResult> YourProfile(string yourLogin)
+        public async Task<IActionResult> YourProfile(string? yourLogin)
         {
-            User? user = await db.Users.SingleOrDefaultAsync(u => u.Login == yourLogin);
+            if (yourLogin.IsNullOrEmpty()) yourLogin = user.Login;
+
+            User? profile = await db.Users.SingleOrDefaultAsync(u => u.Login == yourLogin);
 
             YourProfileModel model = null;
 
-            if (user != null)
+            if (profile != null)
             {
                 model = new YourProfileModel
                 {
@@ -264,8 +266,8 @@ namespace ForumSite.Controllers
                         .SingleOrDefaultAsync(u => u.Login == yourLogin),
                     friends = await db.Friends.Include(f => f.FriendNavigation)
                             .Where(f => f.UserId == user.IdUser).ToListAsync(),
-                    countMessages = db.Messages.Count(m => m.UserId == user.IdUser),
-                    countTopics = db.TopicDiscussions.Count(t => t.UserId == user.IdUser)
+                    countMessages = db.Messages.Count(m => m.UserId == profile.IdUser),
+                    countTopics = db.TopicDiscussions.Count(t => t.UserId == profile.IdUser)
                 };
             }
             else

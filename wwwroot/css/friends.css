@@ -1,0 +1,75 @@
+﻿.main {
+    margin: 0 5vw;
+}
+
+.find_user {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-width: 35%;
+    width: 35%;
+    height: auto;
+    grid-gap: 5px;
+}
+
+.inp_search {
+    flex-grow: 2;
+}
+
+.btn_search {
+    flex-grow: 0.5;
+    border: none;
+    border-radius: 8px;
+    width: auto;
+    background: #3431c4d4;
+    padding: 1vh 1vw;
+}
+
+    .btn_search:hover {
+        background-color: #aeaddefd;
+        color: #3331c4;
+    }
+
+.users {
+    width: auto;
+}
+
+.user_label {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.user {
+    display: flex;
+    grid-gap: 0.8vw;
+    align-items: center;
+    font-size: 1rem;
+    margin-bottom: 2vh;
+    padding-bottom: 2vh;
+    border-bottom: solid 3px #3331c4d4;
+}
+
+.inp_add_friend {
+    border: 0;
+    border-radius: 8px;
+    padding: 1vh 1vw;
+    background-color: #3331c4d4;
+    color: rgb(21, 20, 20);
+}
+
+    .inp_add_friend:hover {
+        background-color: #aeaddefd;
+        color: #3331c4;
+    }
+
+.login_user {
+    text-decoration: none;
+    color: rgb(21, 20, 20);
+    margin-left: 1vw;
+}
+
+    .login_user:hover {
+        color: #3331c4;
+        font-size: 1.1rem;
+        text-shadow: 0 0 2px #3331c4;
+    }

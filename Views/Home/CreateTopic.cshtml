@@ -1,22 +1,29 @@
 ﻿@model User;
 @{
-    <head></head>
+    <head>
+        <link rel="stylesheet" href="~/css/create_topic.css?v=@DateTime.Now.Millisecond"/>
+    </head>
     <body>
-        @using(Html.BeginForm("CreateTopic", "Home", FormMethod.Post))
+    <main>
+        @using (Html.BeginForm("CreateTopic", "Home", null, FormMethod.Post, null, new { @class = "form" }))
         {
+            <p>Создание темы</p>
             <div>
-                <p>
+                <div class="in name">
                     @Html.Label("Name", "Название темы:")
                     @Html.TextBox("Name", "")
-                </p>
-                <p>
-                    @Html.Label("Description", "Описание")
-                    @Html.TextBox("Description", "")
+                </div>
+                <div class="in description">
+                    @Html.Label("Description", "Описание", new {@class="label_description"})
+                    @Html.TextArea("Description", "", new { @class = "text_description"})
+                </div>
                 @Html.Hidden("DateCreation", DateTime.Now)
                 @Html.Hidden("UserId", Model.IdUser)
 
-                <input type="submit" value="СОздать"/>
+                <input class="create" type="submit" value="Создать" />
             </div>
         }
+    </main>
+        
     </body>
 }

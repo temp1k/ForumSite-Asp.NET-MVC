@@ -1,0 +1,78 @@
+﻿main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+fieldset {
+    border: solid blue;
+    padding: 1em 3em;
+    background: linear-gradient(to bottom, #224fbf, #290fd175);
+    text-align: center;
+}
+
+fieldset p{
+    margin: 0;
+    margin-bottom: 3ex;
+    font-size: 3ex;
+    font-weight: bold;
+}
+
+.main {
+    width: auto;
+    display: table;
+    border-spacing: 10px;
+}
+
+.login {
+    display: table-row;
+    padding-top: 10px;
+}
+
+.password {
+    display: table-row;
+    margin-bottom: 5px;
+}
+
+label {
+    display: inline-block;
+    width: 11em;
+    margin-right: 1em;
+}
+
+.password label {
+    text-align: end;
+}
+
+.wrapper {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.but {
+    display: inline-block;
+    background: #3431c4d4;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    padding: 5px 10px;
+}
+
+    .but:hover {
+        background: #e9e9f5fd;
+    }
+
+.reg {
+    text-align: center;
+}
+
+    .reg a {
+        display: inline-block;
+        color: #3431c4d4;
+    }
+
+        .reg a:hover {
+            color: #c43131d4;
+        }

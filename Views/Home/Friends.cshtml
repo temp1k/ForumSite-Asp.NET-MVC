@@ -3,25 +3,39 @@
     IEnumerable<User> users = Model.users;
     User currentUser = Model.currentUser;
 }
-<div>
-    @using (Html.BeginForm("FindUser", "Home", FormMethod.Post))
-    {
-        @Html.TextBox("loginUser", null, null, new { placeholder = "Введите логин"})
+<head>
+    <link rel="stylesheet" href="~/css/friends.css?v=@DateTime.Now.Millisecond">
+</head>
 
-        <input type="submit" value="Найти" />
+<main class="main">
+    @using (Html.BeginForm("FindUser", "Home", null, FormMethod.Post, null, new { @class="find_user"}))
+    {
+        @Html.TextBox("loginUser", null, null, new { placeholder = "Введите логин", @class="inp_search"})
+
+        <input class="btn_search" type="submit" value="Найти" />
     }
 
-    <p>Пользователи:</p>
+    <div class="users">
+    <p class="user_label">Пользователи:</p>
     @foreach(var user in users)
     {
         bool isFriend = user.FriendUsers.Any(f => f.FriendId == currentUser.IdUser) || user.FriendFriendNavigations.Any(f => f.UserId == currentUser.IdUser);
 
-        <p>
-            <a asp-action="Profile" asp-route-login="@user.Login">@user.Login</a> (@user.Fio)
+        <div class="user">
+            <a class="login_user"  asp-action="Profile" asp-route-login="@user.Login">@user.Login</a> (@user.Fio)
             @if (isFriend)
             {
                 <span>В друзьях</span>
             }
-        </p>
+            else
+            {
+                    using (Html.BeginForm("AddFriend", "Home", null, FormMethod.Post, null, new { style = "margin:0" }))
+                {
+                    @Html.Hidden("id", user.IdUser)
+                    <input class="inp_add_friend" type="submit" value="Добавить в друзья" />
+                }
+            }
+         </div>
     }
-</div>
+    </div>
+</main>
