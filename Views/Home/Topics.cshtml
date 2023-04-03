@@ -1,9 +1,10 @@
 ﻿@model IEnumerable<TopicDiscussion>
 @{
+    ViewData["Title"] = "Forum \"About Everything\"";
     IEnumerable<TopicDiscussion> topics = Model;
 }
 <head>
-    <link rel="stylesheet" href="~/css/topics.css"/>
+    <link rel="stylesheet" href="~/css/topics.css?v=@DateTime.Now.Millisecond" />
 </head>
 
 <div style="margin-top:2vh">
