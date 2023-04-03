@@ -1,5 +1,9 @@
 ﻿.inp_topic {
     width: 25%;
+    max-width: 35%;
+    width: 35%;
+    height: auto;
+    font-size: 1.2em;
 }
 
 .btn_search {

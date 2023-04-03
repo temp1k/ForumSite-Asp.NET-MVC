@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\css\\topic.css",
+      "PackagePath": "staticwebassets\\css\\topic.css"
+    },
+    {
       "Id": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\css\\topics.css",
       "PackagePath": "staticwebassets\\css\\topics.css"
     },

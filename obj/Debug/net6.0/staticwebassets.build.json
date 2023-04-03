@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "LJFAoEdbGgBBXmkV/ToikxakUyTjYRxvONObSTy20zI=",
+  "Hash": "Ce7NE8o8tb6qbTzdEucHJvxXT6shoxD7AOREVUPtWZ0=",
   "Source": "ForumSite",
   "BasePath": "_content/ForumSite",
   "Mode": "Default",
@@ -168,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\css\\topic.css",
+      "SourceId": "ForumSite",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\",
+      "BasePath": "_content/ForumSite",
+      "RelativePath": "css/topic.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\topic.css"
     },
     {
       "Identity": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\css\\topics.css",

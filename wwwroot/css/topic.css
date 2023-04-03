@@ -1,0 +1,97 @@
+﻿.about_topic {
+    display: inline;
+    text-align: center;
+}
+
+.name_topic {
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-bottom: 1vh;
+}
+
+.description_topic {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.about_user {
+    padding: 0 20vw;
+}
+
+.one_message {
+    border-bottom: solid 2px #3331c4cd;
+}
+
+.user_message {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-decoration: none;
+    color: #3331c4;
+}
+
+    .user_message:hover {
+        font-style: oblique;
+    }
+
+.evaluation {
+    height: 3ex;
+    width: 3ex;
+}
+
+    .evaluation:hover {
+        height: 3.5ex;
+        width: 3,5ex;
+    }
+
+.delete_message {
+    text-decoration: none;
+    color: #a00;
+}
+
+    .delete_message:hover {
+        text-decoration: underline;
+    }
+
+.message {
+    padding: 0 18vw;
+    font-size: 16px;
+    margin-top: 1vh;
+}
+
+.create_message {
+    padding: 6vh 0;
+    justify-content: center;
+}
+
+.form_message {
+    height: auto;
+    display: flex;
+    margin: 0 22vw;
+    flex-direction: row;
+    justify-content: left;
+    grid-gap: 1vw;
+    align-items: center;
+}
+
+.text_message {
+    font-size: 13px;
+    min-height: 3ex;
+    min-width: 40ex;
+    color: #444;
+    padding: 5px;
+    max-height: 100px;
+    max-width: 40vw;
+}
+
+.btn_message {
+    background: #3331c4;
+    border: none;
+    border-radius: 8px;
+    padding: 1ex;
+    color: black;
+}
+
+.no_message {
+    text-align: center;
+    font-size: 2em;
+}

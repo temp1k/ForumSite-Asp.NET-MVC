@@ -2,46 +2,68 @@
 @{
     TopicDiscussion topic = Model.topic;
 }
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="~/css/topic.css?v=@DateTime.Now.Millisecond" asp-append-version="true" />
+</head>
+
 <main>
-    <div>
-        <p>@topic.Name by @topic.User?.Login</p>
-        <p>@topic.Description</p>
-    </div><br/>
+    <div class="about_topic">
+        <h2 class="name_topic">@topic.Name by @topic.User?.Login</h2>
+        <p class="description_topic">@topic.Description</p>
+    </div>
     
     @if(topic.Messages.Count != 0)
     {
         @foreach(var message in topic.Messages)
         {
-            <div>
-                <p>
-                    <a asp-action="Profile" asp-route-login="@message.User.Login">@message.User.Login</a>
-                    <a asp-action="ChangeMessage" asp-route-id="@message.IdMessage" asp-route-value=-1><img src="~/Files/img/down_arrow.png" /></a>
+            <div class ="one_message">
+                <div class="about_user">
+                    <a class="user_message" asp-action="Profile" asp-route-login="@message.User.Login">@message.User.Login</a>
+                    <a asp-action="ChangeMessage" asp-route-id="@message.IdMessage" asp-route-value=-1><img class="evaluation" src="~/Files/img/down_arrow.png" /></a>
                     @message.Rating
-                    <a asp-action="ChangeMessage" asp-route-id="@message.IdMessage" asp-route-value=1><img src="~/Files/img/up_arrow.png" /></a>
+                    <a asp-action="ChangeMessage" asp-route-id="@message.IdMessage" asp-route-value=1><img class="evaluation" src="~/Files/img/up_arrow.png" /></a>
                     
                     @if (Model.isAdmin)
                     {
-                        @Html.ActionLink("Удалить", "DeleteMessage", new { idMessage = message.IdMessage, idTopic = topic.IdTopic }, null);
+                        @Html.ActionLink("Удалить", "DeleteMessage", new { idMessage = message.IdMessage, idTopic = topic.IdTopic }, new { @class="delete_message" });
                     }
-                </p>
-                <p>@message.TextMessage</p>
+                </div>
+                <p class="message">@message.TextMessage</p>
             </div>
         }
     }
     else
     {
-        <p>В данной теме нет сообщений.</p>
+        <p class="no_message">В данной теме нет сообщений.</p>
     }
 
-    <div>
-        <form asp-action="CreateMessage" asp-controller="home", method="post">
+    <div class="create_message">
+        <form class="form_message" asp-action="CreateMessage" asp-controller="home" , method="post">
             <input type="hidden" value="0" name="IdMessage" />
             <input type="hidden" value="@false" name="StatusChange" />
             <input type="hidden" value="0" name="Rating" />
             <input type="hidden" value="@Model.user.IdUser" name="UserId" />
             <input type="hidden" value="@topic.IdTopic" name="TopicId" />
-            <input type="text" id="TextMessage" name="TextMessage"/>
-            <input type="submit" value="Отправить"/>
+            <textarea class="text_message" rows="1" cols="50"  id="TextMessage" name="TextMessage"></textarea>
+            <input class="btn_message" type="submit" value="Отправить" />
         </form>
     </div>
+
+    <script>
+        var tx = document.getElementsByTagName('textarea');//РАСТЯГИВАЕМ_textarea
+
+        for (var i = 0; i < tx.length; i++) {
+
+            tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
+
+            tx[i].addEventListener("input", OnInput, false);
+        }
+
+        function OnInput() {
+            this.style.height = 'auto';
+
+            this.style.height = (this.scrollHeight) + 'px';//////console.log(this.scrollHeight);
+        }
+    </script>
 </main>
