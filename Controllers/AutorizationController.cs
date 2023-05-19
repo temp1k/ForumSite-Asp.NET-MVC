@@ -58,13 +58,13 @@ namespace ForumSite.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError(" ", "Ваша учетная запись заблокирована.");
+                        ModelState.AddModelError("", "Ваша учетная запись заблокирована.");
                         return View();
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError(" ", "Неккоректно введед логин или пароль.");
+                    ModelState.AddModelError("Password", "Неккоректно введед логин или пароль.");
                     return View();
                 }
 
@@ -91,6 +91,10 @@ namespace ForumSite.Controllers
             }
             return RedirectToAction("Registration");
         }
+
+        //
+        // AJAX requests.
+        //
 
         [HttpPost]
         public async Task<JsonResult> CreateUser(RegistrationModel registrationModel)
@@ -139,6 +143,19 @@ namespace ForumSite.Controllers
                 return Json(code);
             }
             return null;
+        }
+
+        //
+        // Validation Actions
+        //
+        [AcceptVerbs("Get", "Post")]
+        public async Task<IActionResult> CheckLogin(string login)
+        {
+            if (await db.Users.AnyAsync(u => u.Login == login))
+            {
+                return Json(false);
+            }
+            return Json(true);
         }
     }
 }

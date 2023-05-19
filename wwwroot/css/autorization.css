@@ -1,29 +1,48 @@
-﻿main {
+﻿body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80vh;
 }
 
-fieldset {
-    border: solid blue;
-    padding: 1em 3em;
-    background: linear-gradient(to bottom, #224fbf, #290fd175);
-    text-align: center;
+.header{
+    text-align:center;
+    margin-top: 0;
 }
 
-fieldset p{
-    margin: 0;
-    margin-bottom: 3ex;
-    font-size: 3ex;
+.pole {
+    font-size: 14pt;
     font-weight: bold;
+}
+
+fieldset {
+    border: solid blue;
+    padding: 1em 2em;
+    background: #bcbbedfd;
 }
 
 .main {
     width: auto;
     display: table;
-    border-spacing: 10px;
+    border-spacing: 20px;
 }
+
+    .main > div > input {
+        padding: 8px;
+        border-radius: 10px;
+        border: none;
+        background: #e8eee3;
+        margin-top: 1px;
+    }
+
+    .main > div > span {
+        color: red;
+        font-size: 10pt;
+        display: block;
+        text-align: center;
+    }
+
+
 
 .login {
     display: table-row;
@@ -37,7 +56,7 @@ fieldset p{
 
 label {
     display: inline-block;
-    width: 11em;
+    width: 12em;
     margin-right: 1em;
 }
 
@@ -56,16 +75,18 @@ label {
     background: #3431c4d4;
     border: none;
     border-radius: 8px;
-    font-size: 1rem;
-    padding: 5px 10px;
+    font-size: 14pt;
+    padding: 6px 12px;
 }
 
     .but:hover {
         background: #e9e9f5fd;
+        box-shadow: 1px 2px 5px #e9e9f5fd;
     }
 
 .reg {
     text-align: center;
+    margin-top: 4vh;
 }
 
     .reg a {
@@ -76,3 +97,9 @@ label {
         .reg a:hover {
             color: #c43131d4;
         }
+
+.errors_info{
+    font-size: 10pt;
+    font-weight: bold;
+    margin-top: 2vh;
+}

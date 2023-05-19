@@ -1,1 +1,82 @@
-﻿
+﻿.main {
+    color: #121111;
+    font-size: 12pt;
+}
+
+.container_center {
+    margin: auto;
+    width: 40%;
+    padding: 10px;
+    background: linear-gradient(to bottom, #224fbf, #290fd175);
+    box-shadow: 2px 3px 10px #224fbf;
+}
+
+.header {
+    text-align: center;
+    text-shadow: 0px 1px 0px #121111;
+    margin-top: 0;
+    font-size: 16pt;
+}
+
+.login_div {
+    width: 100%;
+}
+    .login_div > span {
+        color: red;
+        font-size: 8pt;
+        font-weight:bold;
+        display: block;
+        text-align: center;
+    }
+    .login_div > * {
+        display: block;
+        margin: auto;
+        width: 50%;
+    }
+
+    .login_div input {
+        padding: 6px;
+        border-radius: 10px;
+        border: none;
+        background: #e8eee3;
+        margin-top: 1px;
+    }
+
+        .login_div input:focus {
+            box-shadow: 1px 1px 5px white;
+            outline-color: #224fbf;
+        }
+
+    .login_div label {
+        padding-left: 5px;
+    }
+
+.wrapper {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    margin-top: 1vh;
+}
+
+.btn1 {
+    display: inline-block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #222423;
+    border-radius: 10px;
+    border: none;
+    background: #d3dccc;
+}
+
+    .btn1:hover {
+        box-shadow: 0 5px 5px #224fbf; /* Тень */
+        color: #e9e9ce;
+        background: #3431c4d4;
+        text-shadow: 0px 1px 2px #121111;
+    }
+
+.signin {
+    text-align: center;
+}
