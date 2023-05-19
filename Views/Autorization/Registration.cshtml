@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    
+    <link rel="stylesheet" href="~/css/registration.css?v=@DateTime.Now.Millisecond" asp-append-version="true" />
     <title>Forum "About everything"</title>
 </head>
 <body>
@@ -13,21 +13,23 @@
         <div class="container">
             <div class="login">
                 <label asp-for="Login">Введите логин:  </label>
-                <input asp-for="Login" class="input" placeholder="Enter login" name="Login" id="login" value="" />
+                <input asp-for="Login" class="input" placeholder="Введите логин" name="Login" id="login" value="" />
                 <span asp-validation-for="Login"></span><br />
                 <label asp-for="Password">Введите пароль: </label>
-                <input class="input" type="password" asp-for="Password" placeholder="Enter password" id="password" name="Password" value="" />
+                <input class="input" type="password" asp-for="Password" placeholder="Введите пароль" id="password" name="Password" value="" />
                 <span asp-validation-for="Password"></span><br />
                 <label asp-for="RepeatPassword">Повторите пароль: </label>
-                <input class="input" type="password" asp-for="RepeatPassword" placeholder="Repeat password" name="RepeatPassword" value="" />
-                <span asp-validation-for="RepeatPassword"></span><br /><br />
+                <input class="input" type="password" asp-for="RepeatPassword" placeholder="Повторите пароль" name="RepeatPassword" value="" />
+                <span asp-validation-for="RepeatPassword"></span><br/>
                 <label asp-for="Fio">Введите ваше имя:</label>
                 <input name="Fio" asp-for="Fio" />
-                <span asp-validation-for="Fio"></span><br />
-                <input type="submit" class="btn" value="Register" />
+                <span asp-validation-for="Fio"></span><br/>
+                <div class="wrapper">
+                    <button type="submit" class="btn1">Зарегестрироваться</button>
+                </div>
             </div>
             <div class="signin">
-                <p>Already have an account? <a href="@Url.Action("Autorization", "Autorization")">Sing in</a>.</p>
+                <p>У вас уже есть аккаунт? <a href="@Url.Action("Autorization", "Autorization")">Войти</a>.</p>
             </div>
         </div>
     </form>

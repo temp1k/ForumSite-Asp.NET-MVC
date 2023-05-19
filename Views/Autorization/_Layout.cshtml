@@ -6,8 +6,8 @@
     <title>@ViewData["Title"] - ForumSite</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/layout.css"/>
-    <link rel="stylesheet" href="~/ForumSite.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/layout.css?v=@DateTime.Now.Millisecond" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ForumSite.styles.css?v=@DateTime.Now.Millisecond" asp-append-version="true" />
 </head>
 <body>
     <header class="head">

@@ -13,6 +13,9 @@
             <p class="login">@user.Login</p>
             <p class="fio">@user.Fio</p>
         </div>
+        @if (string.IsNullOrEmpty(user.Email)){
+            @Html.ActionLink("Подтвердить аккаунт", "VerifyAccount", new {id = user.IdUser}, null)
+        }
         <div class="main_div friends">
             <p class ="friends_label">Друзья: </p>
             @foreach (var friend in friends)

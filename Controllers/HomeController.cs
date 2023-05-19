@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Transactions;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace ForumSite.Controllers
 {
@@ -305,6 +306,35 @@ namespace ForumSite.Controllers
 
 
             return RedirectToAction("Topic", new { id = message.TopicId });
+        }
+
+        public async Task<IActionResult> VerifyAccount(int id)
+        {
+            User user = await db.Users.FirstOrDefaultAsync(u => u.IdUser == id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> ConfirmEmail(User user)
+        {
+            User _user = await db.Users.FirstOrDefaultAsync(u => u.Login == user.Login);
+            if (_user == null)
+            {
+                return null;
+            }
+
+            _user.Email = user.Email;
+            db.Users.Update(_user);
+            await db.SaveChangesAsync();
+
+            var json = JsonConvert.SerializeObject(_user);
+            return Json(json);
         }
 
         public IActionResult GetFile()

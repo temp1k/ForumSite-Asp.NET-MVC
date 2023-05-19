@@ -1,0 +1,83 @@
+﻿.center_container {
+    margin: auto;
+    width: 40%;
+    padding: 20px 10px;
+    background: linear-gradient(to bottom, #224fbf, #290fd175);
+}
+
+.main {
+    color: #121111;
+}
+
+.header_email {
+    text-align: center;
+}
+
+.center_input {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    margin-top: 10vh;
+}
+
+.btn_a {
+    margin-top: 3vh;
+    display: inline-block;
+    padding: 5px 15px;
+    text-decoration: none;
+    color: #222423;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #fcfff4, #e9e9ce);
+}
+
+    .btn_a:hover {
+        box-shadow: 0 0 5px #224fbf; /* Тень */
+        color: #e9e9ce;
+        background: #3431c4d4;
+        text-shadow: 0px 1px 1px #121111;
+    }
+
+.div_content {
+    width: 100%;
+    margin-top: 2vh;
+}
+
+    .div_content > * {
+        display: block;
+        width: 70%;
+        margin: auto;
+    }
+
+    .div_content > label {
+        padding-left: 10px;
+        font-weight: bold;
+    }
+
+.inp_text {
+    padding: 10px 5px;
+    border-radius: 10px;
+    border: none;
+    width: 70%;
+    margin-top: 0.5vh;
+}
+.e {
+    text-align: center;
+}
+
+.container_cancel {
+    width: 100%;
+    text-align: center;
+    margin-top: 2vh;
+}
+
+    .container_cancel a {
+        text-decoration: none;
+        color: rgb(195, 16, 16)
+    }
+
+        .container_cancel a:hover {
+            font-weight: bold;
+            text-decoration: underline;
+        }

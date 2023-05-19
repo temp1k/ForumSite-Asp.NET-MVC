@@ -1,22 +1,23 @@
 ﻿using System.Net.Mail;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace ForumSite
 {
-    public class EmailService
+    interface IEmailService
     {
-        private string fromMail;
-        private string nameFromMail;
-        private string password = "semudlymuhxanbky";
+        bool SendEmailCode(string to_email, string code);
+        string GenerateCode();
+        bool isValidEmail(string email);
+    }
 
-        public EmailService(string fromMail = "gnusarovvladislav@gmail.com", string nameFromMail = "Код подтверждения") 
+    public class EmailService: IEmailService
+    {
+        public bool SendEmailCode(string to_email, string code)
         {
-            this.fromMail = fromMail;
-            this.nameFromMail = nameFromMail; 
-        }
+            string from_email = "gnusarovvladislav@gmail.com";
+            String password = "jamedkhdwsglodox";
 
-        public void SendMessage(string toMail, string toName, string subject, string text)
-        {
             using (var client = new SmtpClient())
             {
                 client.Host = "smtp.gmail.com";
@@ -24,20 +25,43 @@ namespace ForumSite
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
                 client.EnableSsl = true;
-                client.Credentials = new NetworkCredential(this.fromMail, this.password);
-                using (var message = new MailMessage(
-                    from: new MailAddress(this.fromMail, this.nameFromMail),
-                    to: new MailAddress(toMail, toName)
-                    ))
+                client.Credentials = new NetworkCredential(from_email, password);
+                try
                 {
+                    using (var message = new MailMessage(
+                        from: new MailAddress(from_email, "Сайт Forum \"About Everything\""),
+                        to: new MailAddress(to_email)
+                        ))
+                    {
+                        message.Subject = "Подтверждение электронной почты";
+                        message.Body = $"Ваш код: {code}";
+                        client.Send(message);
 
-                    message.Subject = subject;
-                    message.Body = text;
-
-                    client.Send(message);
+                        return true;
+                    }
                 }
+                catch (FormatException ex)
+                {
+                    return false;
+                }
+
             }
         }
 
+        public string GenerateCode()
+        {
+            Random rnd = new Random();
+
+            int code = rnd.Next(10000, 99999);
+
+            return code.ToString();
+        }
+
+        public bool isValidEmail(string email)
+        {
+            string pattern = "[.\\-_a-z0-9]+@([a-z0-9][\\-a-z0-9]+\\.)+[a-z]{2,6}";
+            Match isMatch = Regex.Match(email, pattern, RegexOptions.IgnoreCase);
+            return isMatch.Success;
+        }
     }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Ce7NE8o8tb6qbTzdEucHJvxXT6shoxD7AOREVUPtWZ0=",
+  "Hash": "FGHdwNonAsvY7HjV5zqd0Xr8VQRoEe9JdXciLgOBayI=",
   "Source": "ForumSite",
   "BasePath": "_content/ForumSite",
   "Mode": "Default",
@@ -153,6 +153,23 @@
       "OriginalItemSpec": "wwwroot\\css\\profile.css"
     },
     {
+      "Identity": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\css\\registration.css",
+      "SourceId": "ForumSite",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\",
+      "BasePath": "_content/ForumSite",
+      "RelativePath": "css/registration.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\registration.css"
+    },
+    {
       "Identity": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\css\\site.css",
       "SourceId": "ForumSite",
       "SourceType": "Discovered",
@@ -202,6 +219,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\topics.css"
+    },
+    {
+      "Identity": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\css\\verifyaccount.css",
+      "SourceId": "ForumSite",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\",
+      "BasePath": "_content/ForumSite",
+      "RelativePath": "css/verifyaccount.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\verifyaccount.css"
     },
     {
       "Identity": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\favicon.ico",
@@ -287,6 +321,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Files\\img\\up_arrow.png"
+    },
+    {
+      "Identity": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\js\\reg.js",
+      "SourceId": "ForumSite",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\",
+      "BasePath": "_content/ForumSite",
+      "RelativePath": "js/reg.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\reg.js"
     },
     {
       "Identity": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\js\\site.js",

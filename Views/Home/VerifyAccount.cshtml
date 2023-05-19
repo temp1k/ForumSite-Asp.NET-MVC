@@ -1,0 +1,111 @@
+﻿@model ForumSite.Models.User;
+
+@*
+    Страница с формой для подтвреждения аккаунта с помощью почты
+*@
+@{
+    ViewData["Title"] = "Forum \"About Everything\"";
+}
+<head>
+    <link rel="stylesheet" href="~/css/verifyaccount.css?v=@DateTime.Now.Millisecond">
+    <link rel="stylesheet" href="~/css/site.css?v=@DateTime.Now.Millisecond">
+</head>
+<main class="main">
+    <div class="center_container">
+        <h1 class="header_email">Подтверждение почты</h1>
+        <hr />
+        <div class="center_input">
+            <input id="fio" type="hidden" value="@Model.Fio" />
+            <div class="div_content" id="gmailModel">
+                <label>Адрес электронной почты:</label>
+                <input class="inp_text" id="gmailVal" type="text" placeholder="Введите адрес электронной почты" />
+            </div>
+            <a class="btn_a" id="btnGetCode" href="#" onclick="GetMessage(); return false;">Получить код</a>
+            <div class="div_content" id="codeModel" style="display:none">
+                <label id="codeLabel">Код:</label>
+                <input class="inp_text e" id="codeEmail" type="text" placeholder="Код пришедший на почту" />
+            </div>
+            <a class="btn_a" id="btnSendCode" href="#" onclick="CheckCode(); return false;" style="display:none">Отправить</a>
+        </div>
+        <div class="container_cancel">
+            @Html.ActionLink("Отмена","YourProfile");
+        </div>
+    </div>
+</main>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    let code, email;
+
+    $(document).ready(function () {
+
+    });
+
+    document.getElementById("codeEmail").addEventListener('input',
+        function (e) {
+            this.value = this.value.replace(/[^\d.]/g, '');
+        }
+    )
+
+    function GetMessage() {
+        email = $('#gmailVal').val();
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("SendEmailCode", "Autorization")',
+            dataType: "json",
+            data: { email: email },
+            success: function (data) {
+                // alert("Data has been added successfully.");
+                console.log(data);
+
+                if (data != null) {
+                    $('#codeLabel').text(`Введите код отправленный на почту ${email}:`);
+                    document.getElementById("codeModel").style.display = "block";
+                    document.getElementById("btnGetCode").style.display = "none";
+                    document.getElementById("btnSendCode").style.display = "block";
+                    document.getElementById("gmailVal").disabled = true;
+                    code = data;
+                }
+                else {
+                    alert("Неверно введена электронная почта");
+                }
+
+            },
+            error: function () {
+                alert("Неверно введена электронная почта");
+            }
+        });
+    }
+
+    function CheckCode() {
+        var inpcode = $('#codeEmail').val();
+        if (code == inpcode) {
+
+            let userdata = new Object();
+            userdata.login = '@Model.Login';
+            userdata.password = '@Model.Password';
+            userdata.fio = $('#fio').val();
+            userdata.email = email;
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ConfirmEmail")',
+                data: userdata,
+                success: function (data) {
+                    alert(`Почта ${email} успшено подтверждена`);
+                    window.location.href = '@Url.Action("YourProfile")';
+                },
+                error: function () {
+                    alert("Ошибка соединения с сервером.");
+                }
+            });
+        }
+        else {
+            alert("Неверно введен код.");
+        }
+    }
+</script>

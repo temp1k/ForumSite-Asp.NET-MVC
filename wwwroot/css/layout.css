@@ -5,12 +5,11 @@
 .head {
     background: linear-gradient(to bottom, #224fbf, #290fd175);
     padding: 0;
-    padding-top: 3vh;
+    padding-top: 2vh;
     padding-right: 2vw;
     padding-left: 2vw;
-    height: 8vh;
+    height: 10vh;
     position: relative;
-    margin-bottom: 2vh;
 }
 
 .head h2 {

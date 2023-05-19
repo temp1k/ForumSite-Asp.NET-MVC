@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Security.Claims;
 
 namespace ForumSite.Controllers
@@ -78,26 +79,66 @@ namespace ForumSite.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Registration(RegistrationModel registrationModel)
+        public IActionResult Registration(RegistrationModel registrationModel)
         {
             if (ModelState.IsValid)
             {
                 if (registrationModel.checkPasswords())
                 {
-                    User user = new()
-                    {
-                        Login = registrationModel.Login,
-                        Password = registrationModel.Password,
-                        Email = registrationModel.Email,
-                        Fio = registrationModel.Fio,
-                        DateRegistration = DateTime.Now
-                    };
-                    db.Users.Add(user);
-                    await db.SaveChangesAsync();
-                    return RedirectToAction("Autorization");
+                    Console.WriteLine("Полное ФИО: " + registrationModel.Fio);
+                    return RedirectToAction("SendEmailCode", registrationModel);
                 }
             }
             return RedirectToAction("Registration");
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> CreateUser(RegistrationModel registrationModel)
+        {
+            User user = new()
+            {
+                Login = registrationModel.Login,
+                Password = registrationModel.Password,
+                Email = registrationModel.Email,
+                Fio = registrationModel.Fio,
+                DateRegistration = DateTime.Now
+            };
+
+            db.Users.Add(user);
+            await db.SaveChangesAsync();
+            var json = JsonConvert.SerializeObject(registrationModel);
+
+            return Json(json);
+        }
+
+        [HttpGet]
+        public IActionResult SendEmailCode(RegistrationModel? regModel)
+        {
+            return View(regModel);
+        }
+
+        [HttpPost]
+        public JsonResult? SendEmailCode(string email)
+        {
+            IEmailService? emailService = HttpContext.RequestServices.GetService<IEmailService>();
+
+            if(email == null)
+            {
+                return null;
+            }
+
+            if (!emailService.isValidEmail(email))
+            {
+                return null;
+            }
+
+            string code = emailService.GenerateCode();
+
+            if (emailService.SendEmailCode(email, code))
+            {
+                return Json(code);
+            }
+            return null;
         }
     }
 }
