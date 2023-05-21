@@ -7,18 +7,71 @@
     <link rel="stylesheet" href="~/css/profile.css?v=@DateTime.Now.Millisecond">
 </head>
 
+<body>
 <div class="main_div profile">
     <p class="login">@user.Login</p>
     <p class="fio">@user.Fio</p>
+
+        @switch (Model.friendType)
+        {
+            case "Подтверждено":
+                <div class="about_friend">
+                    @using (Html.BeginForm("DeleteFriend", "Home", FormMethod.Post))
+                    {
+                        @Html.Hidden("id", user.IdUser)
+                        <input id="btnDeleteFr" class="inp_friend inp_delete_friend" type="submit" value="В друзьях" />
+                    }
+                </div>
+                break;
+            case "Не подтверждено":
+                <div class="about_friend">
+                    <span>Отправлен запрос в друзья</span>
+                    @using (Html.BeginForm("DeleteFriend", "Home", FormMethod.Post))
+                    {
+                        @Html.Hidden("id", user.IdUser)
+                        <button id="btnCancelFr" class="bnt_cancel" type="submit">
+                            <img class="img_cancel" src="~/Files/img/cross.png" alt="Отменить запрос" title="Отменить запрос">
+                        </button>
+                    }
+                </div>
+                break;
+            case "Запрос":
+                <div class="about_friend">
+                    <span>@user.Login хочет с вами подружиться</span>
+                    @using (Html.BeginForm("ConfirmFriend", "Home", FormMethod.Post))
+                    {
+                        @Html.Hidden("id", user.IdUser)
+                        @Html.Hidden("window", "profile")
+                        <button id="btnCancelFr" class="bnt_cancel" type="submit">
+                            <img class="img_confirm" src="~/Files/img/check.png" alt="Принять" title="Принять">
+                        </button>
+                    }
+                    @using (Html.BeginForm("DeleteFriend", "Home", FormMethod.Post))
+                    {
+                        @Html.Hidden("id", user.IdUser)
+                        @Html.Hidden("window", "profile")
+                        <button id="btnCancelFr" class="bnt_cancel" type="submit">
+                            <img class="img_cancel" src="~/Files/img/cross.png" alt="Отклонить" title="Отклонить">
+                        </button>
+                    }
+                </div>
+                break;
+            default:
+                @using (Html.BeginForm("AddFriend", "Home", FormMethod.Post))
+                {
+                    @Html.Hidden("id", user.IdUser)
+                    <input class="inp_friend inp_add_friend" type="submit" value="Добавить в друзья" />
+                }
+                break;
+        }
     
-    @if (Model.isFriend)
+    @*@if (Model.isFriend)
     {
         <div class="about_friend">
-            <span>В друзьях</span>
             @using (Html.BeginForm("DeleteFriend", "Home", FormMethod.Post))
             {
                 @Html.Hidden("id", user.IdUser)
-                <input class="inp_friend inp_delete_friend" type="submit" value="Удалить из друзей" />
+                <input id="btnDeleteFr" class="inp_friend inp_delete_friend" type="submit" value="В друзьях" />
             }
         </div>
     }
@@ -27,7 +80,7 @@
         {
             @Html.Hidden("id", user.IdUser)
             <input class="inp_friend inp_add_friend" type="submit" value="Добавить в друзья" />
-        }
+        }*@
 </div>
 <div class="main_div friends">
     <p class ="friends_label">Друзья: </p>
@@ -49,3 +102,16 @@
         }
     </ul>
 </div>
+</body>
+
+<script>
+    let btnDelFr = document.getElementById("btnDeleteFr");  
+
+    btnDelFr.addEventListener("mouseover", function(){
+        btnDelFr.value = "Удалить из друзей";
+    });
+
+    btnDelFr.addEventListener("mouseout", function(){
+        btnDelFr.value = "В друзьях";
+    });
+</script>

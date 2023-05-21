@@ -39,7 +39,10 @@ namespace ForumSite.Controllers
             user = await db.Users.Include(u => u.Admins).FirstOrDefaultAsync(u => u.IdUser == id);
             isAdmin = db.Admins.Any(a => a.UserId == user.IdUser);
             List<TopicDiscussion> topics = await db.TopicDiscussions.Include(t => t.User).ToListAsync();
-            MainModel mainModel = new MainModel(user, topics);
+            List<Friend> wantFriends = await db.Friends
+                .Include(f => f.User).Where(f => f.RelationId == 2 && f.FriendId == user.IdUser)
+                .ToListAsync();
+            MainModel mainModel = new MainModel(user, topics, wantFriends);
             return View(mainModel);
         }
 
@@ -52,7 +55,10 @@ namespace ForumSite.Controllers
 
             if (topics != null)
             {
-                MainModel mainModel = new MainModel(user, topics);
+                List<Friend> wantFriends = await db.Friends
+                .Include(f => f.User).Where(f => f.RelationId == 2 && f.FriendId == user.IdUser)
+                .ToListAsync();
+                MainModel mainModel = new MainModel(user, topics, wantFriends);
 
                 return View("Index", mainModel);
             }
@@ -169,6 +175,7 @@ namespace ForumSite.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 Friend newFriend = new Friend
                 {
                     UserId = user.IdUser,
@@ -176,7 +183,86 @@ namespace ForumSite.Controllers
                     RelationId = 2
                 };
 
-                db.Friends.Add(newFriend);
+                Friend? checkFriend = await db.Friends.FirstOrDefaultAsync(f => f.UserId == newFriend.UserId && f.FriendId == newFriend.FriendId);
+                if (checkFriend != null)
+                {
+                    checkFriend.RelationId= 2;
+                    db.Friends.Update(checkFriend);
+                }
+                else db.Friends.Add(newFriend);
+
+
+                await db.SaveChangesAsync();
+            }
+
+            User anotherUser = await db.Users.FirstAsync(u => u.IdUser == id);
+
+            return RedirectToAction("Profile", new { login = anotherUser.Login });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ConfirmFriend(int id, string window)
+        {
+            if (ModelState.IsValid)
+            {
+                Friend confirmFriend = await db.Friends.FirstOrDefaultAsync(f => f.UserId == id && f.FriendId == user.IdUser);
+
+                if (confirmFriend == null) return NotFound();
+
+                confirmFriend.RelationId = 1;
+
+                Friend? checkOldFriend = await db.Friends.FirstOrDefaultAsync(f => f.UserId == user.IdUser && f.FriendId == id);
+
+                if (checkOldFriend != null)
+                {
+                    checkOldFriend.RelationId = 1;
+                    db.Friends.Update(checkOldFriend);
+                }
+                else
+                {
+                    Friend newFriend = new Friend()
+                    {
+                        UserId = user.IdUser,
+                        FriendId = id,
+                        RelationId = 1
+                    };
+                    db.Friends.Add(newFriend);
+                }
+                
+                db.Friends.Update(confirmFriend);
+                await db.SaveChangesAsync();
+            }
+
+            User anotherUser = await db.Users.FirstAsync(u => u.IdUser == id);
+
+            switch (window)
+            {
+                case "profile":
+                    return RedirectToAction("Profile", new { login = anotherUser.Login });
+                case "index":
+                    return RedirectToAction("Index", new { id = user.IdUser });
+                default:
+                    return NoContent();
+            }
+        
+        }
+
+        public async Task<IActionResult> DeleteFriend(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                Friend? deleteFriend = await db.Friends.FirstOrDefaultAsync(f => f.UserId == user.IdUser && f.FriendId == id);
+
+                if (deleteFriend == null) return NotFound();
+
+                Friend? changeFriend = await db.Friends.FirstOrDefaultAsync(f => f.UserId == id && f.FriendId == user.IdUser);
+                if (changeFriend != null)
+                {
+                    changeFriend.RelationId = 4;
+                    db.Friends.Update(changeFriend);
+                }
+                
+                db.Friends.Remove(deleteFriend);
                 await db.SaveChangesAsync();
             }
 
@@ -206,18 +292,43 @@ namespace ForumSite.Controllers
                         .Include(u => u.FriendFriendNavigations)
                         .FirstOrDefaultAsync(u => u.IdUser == user.IdUser);
 
-                    bool isFriend = await db.Friends.AnyAsync(f => f.UserId == anotherUser.IdUser && f.FriendId == currentUser.IdUser
-                            || f.UserId == currentUser.IdUser && f.FriendId == anotherUser.IdUser);
 
+                    string? friendType = null;
+                    Friend? awaitFriend = await db.Friends
+                            .Include(f => f.Relation)
+                            .FirstOrDefaultAsync(f => f.UserId == anotherUser.IdUser && f.FriendId == user.IdUser && f.Relation.Name == "Не подтверждено");
+
+                    if (awaitFriend != null) friendType = "Запрос";
+                    else
+                    {
+                        Friend? friend = await db.Friends
+                        .Include(f => f.Relation)
+                        .FirstOrDefaultAsync(f => f.UserId == user.IdUser && f.FriendId == anotherUser.IdUser);
+
+
+                        if (friend != null)
+                        {
+                            switch (friend.RelationId)
+                            {
+                                case 4:
+                                    friendType = "Удален";
+                                    break;
+                                default:
+                                    friendType = friend.Relation.Name;
+                                    break;
+                            }
+
+                        }
+                    }
                     ProfileModel profileModel = new ProfileModel
                     {
                         user = anotherUser,
                         friends = await db.Friends.Include(f => f.FriendNavigation)
-                            .Where(f => f.UserId == anotherUser.IdUser).ToListAsync(),
+                            .Where(f => f.UserId == anotherUser.IdUser && f.RelationId == 1).ToListAsync(),
                         countMessages = db.Messages.Count(m => m.UserId == anotherUser.IdUser),
                         countTopics = db.TopicDiscussions.Count(t => t.UserId == anotherUser.IdUser),
                         isAdmin = isAdmin,
-                        isFriend = isFriend,
+                        friendType = friendType,
                         currentUser = currentUser
                     };
                     return View(profileModel);

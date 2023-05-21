@@ -8,11 +8,13 @@ namespace ForumSite.ModelViews
 
         public List<TopicDiscussion> topics { get; set; }
 
-        public MainModel(User user, List<TopicDiscussion> topics)
+        public List<Friend> wantFriends { get; set; }
+
+        public MainModel(User user, List<TopicDiscussion> topics, List<Friend> wantFriends)
         {
             this.user = user;
             this.topics = topics;
-
+            this.wantFriends= wantFriends;
         }
     }
 }

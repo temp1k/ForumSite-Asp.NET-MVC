@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="~/css/topics.css?v=@DateTime.Now.Millisecond" />
 </head>
 
-<div style="margin-top:2vh">
+<div style="margin-top:2vh;">
     <div>
         @using (Html.BeginForm("FindTopic", "Home", FormMethod.Post))
         {
@@ -23,8 +23,9 @@
                 <div class="about_topic">
                     <img class="icon_topic" src="~/Files/img/letter_icon.png" />
                     <p class="text_topic">
-                        @Html.ActionLink(topic.Name, "Topic", new {id = topic.IdTopic}, new { @class="name_topic"}) by
+                        @Html.ActionLink(topic.Name, "Topic", new {id = topic.IdTopic}, new { @class="name_topic"}) от
                         <a>@topic.User.Login</a>
+                        @topic.DateCreation.ToShortDateString()
                     </p>
                 </div>
 

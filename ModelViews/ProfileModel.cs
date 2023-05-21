@@ -14,7 +14,7 @@ namespace ForumSite.ModelViews
 
         public bool isAdmin { get; set; } = false;
 
-        public bool isFriend { get; set; } = false;
+        public string friendType { get; set; } = null;
 
         public User currentUser { get; set; } = null!;
     }

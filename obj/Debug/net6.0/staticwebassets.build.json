@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FGHdwNonAsvY7HjV5zqd0Xr8VQRoEe9JdXciLgOBayI=",
+  "Hash": "uxgtMtyiLiWunr3Ypu33ZFZl/ReNybSwg/8/VRdEoJs=",
   "Source": "ForumSite",
   "BasePath": "_content/ForumSite",
   "Mode": "Default",
@@ -270,6 +270,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Files\\Hello.txt"
+    },
+    {
+      "Identity": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\Files\\img\\check.png",
+      "SourceId": "ForumSite",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\",
+      "BasePath": "_content/ForumSite",
+      "RelativePath": "Files/img/check.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Files\\img\\check.png"
+    },
+    {
+      "Identity": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\Files\\img\\cross.png",
+      "SourceId": "ForumSite",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\",
+      "BasePath": "_content/ForumSite",
+      "RelativePath": "Files/img/cross.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Files\\img\\cross.png"
     },
     {
       "Identity": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\Files\\img\\down_arrow.png",

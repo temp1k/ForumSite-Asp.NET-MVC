@@ -10,7 +10,7 @@
 <head>
     <title>Forum "About Everything"</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="~/css/index.css"/>
+    <link rel="stylesheet" href="~/css/index.css?v=@DateTime.Now.Millisecond" />
 </head>
 <body>
     <main>
@@ -21,12 +21,39 @@
         <a asp-action="Friends">Добавить друзей</a>
         <a asp-action="YourProfile" asp class="your_profile">Ваш профиль</a>
     </div>
-
-    
-
-    @{
-        await Html.RenderPartialAsync("Topics", Model.topics);
-    }
+    <div class="container_main">
+        <div class="container_topics">
+        @{
+            await Html.RenderPartialAsync("Topics", Model.topics, null);
+        }
+        </div>
+        <div class="container_friends">
+            <h3>Запросы в друзья:</h3>
+            @foreach(var wantFriend in Model.wantFriends)
+            {
+                <div class="container_friend">
+                    <span>Пользователь @wantFriend.User.Login хочет добавить вас в друзья</span>
+                        @using (Html.BeginForm("ConfirmFriend", "Home", FormMethod.Post))
+                    {
+                        @Html.Hidden("id", wantFriend.User.IdUser)
+                        @Html.Hidden("window", "index")
+                        <button id="btnCancelFr" class="bnt_cancel" type="submit">
+                            <img class="img_confirm" src="~/Files/img/check.png" alt="Принять" title="Принять">
+                        </button>
+                    }
+                    @using (Html.BeginForm("DeleteFriend", "Home", FormMethod.Post))
+                    {
+                            @Html.Hidden("id", wantFriend.User.IdUser)
+                        @Html.Hidden("window", "index")
+                        <button id="btnCancelFr" class="bnt_cancel" type="submit">
+                            <img class="img_cancel" src="~/Files/img/cross.png" alt="Отклонить" title="Отклонить">
+                        </button>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+   
     </main>
 </body>
 </html>

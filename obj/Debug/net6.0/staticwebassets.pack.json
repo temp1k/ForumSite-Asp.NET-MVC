@@ -9,6 +9,14 @@
       "PackagePath": "staticwebassets\\Files\\Hello.txt"
     },
     {
+      "Id": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\Files\\img\\check.png",
+      "PackagePath": "staticwebassets\\Files\\img\\check.png"
+    },
+    {
+      "Id": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\Files\\img\\cross.png",
+      "PackagePath": "staticwebassets\\Files\\img\\cross.png"
+    },
+    {
       "Id": "C:\\Users\\gnusa\\OneDrive\\Рабочий стол\\Курсовая\\Сайт\\ForumSite\\wwwroot\\Files\\img\\down_arrow.png",
       "PackagePath": "staticwebassets\\Files\\img\\down_arrow.png"
     },

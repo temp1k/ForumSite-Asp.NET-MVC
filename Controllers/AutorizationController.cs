@@ -58,7 +58,7 @@ namespace ForumSite.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Ваша учетная запись заблокирована.");
+                        ModelState.AddModelError("Password", "Ваша учетная запись заблокирована.");
                         return View();
                     }
                 }
